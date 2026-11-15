@@ -6,6 +6,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float moveSpeed = 6f;
     [SerializeField] float fireCooldown = 0.2f;
     [SerializeField] BulletPool bulletPool;
+    [SerializeField] int maxHealth = 5;
+    [SerializeField] float damageCooldown = 1f;
+    int health;
+    float damageTimer;
     float fireTimer = 0f;
     Rigidbody rb;
     Vector3 moveDir;
@@ -14,6 +18,9 @@ public class PlayerController : MonoBehaviour
     {
         // Store in rb the reference to the Rigidbody component attached to this GameObject
         rb = GetComponent<Rigidbody>();
+
+        // Set Health to maxHealth at the start of the game
+        health = maxHealth;
     }
 
     void Update()
@@ -90,7 +97,11 @@ public class PlayerController : MonoBehaviour
                 fireTimer = fireCooldown;
             }
         }
+        //=======================================================\\
 
+        // PLAYER DAMAGE COOLDOWN \\
+        // Count down the damage timer
+        damageTimer -= Time.deltaTime;
         //=======================================================\\
     }
 
@@ -98,5 +109,26 @@ public class PlayerController : MonoBehaviour
     {
         // Store the rigidbody's velocity from moveDir and moveSpeed
         rb.linearVelocity = moveDir * moveSpeed;
+    }
+
+    // Handle collision with enemies
+    void OnCollisionStay(Collision collision)
+    {
+        // If the player collides with an enemy and the damage timer is less than or equal to 0, take damage
+        if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemy) && damageTimer <= 0f)
+        {
+            // Decrease health by 1
+            health--;
+            Debug.Log("Player Health: " + health);
+
+            // Reset the damage timer to the damage cooldown value
+            damageTimer = damageCooldown;
+
+            // If health is 0 or less, destroy the player GameObject
+            if (health <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }

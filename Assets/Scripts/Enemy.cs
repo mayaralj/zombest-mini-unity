@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] float speed = 3f;
+    [SerializeField] float speed = 4f;
     [SerializeField] int health = 3;
     [SerializeField] Transform target;
     Rigidbody rb;
