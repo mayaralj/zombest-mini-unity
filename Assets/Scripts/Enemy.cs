@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamageable
 {
     [SerializeField] EnemyData data;
-    int health;
+    float health;
     [SerializeField] Transform target;
     Rigidbody rb;
     EnemySpawner spawner;
@@ -51,13 +51,13 @@ public class Enemy : MonoBehaviour
         rb.linearVelocity = direction * data.speed;
     }
 
-    public int GetDamage()
+    public float GetDamage()
     {
         // Return the damage value from the EnemyData scriptable object
         return data.damage;
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         // Take damage and check if health is 0 or less, if so destroy the enemy
         health -= amount;

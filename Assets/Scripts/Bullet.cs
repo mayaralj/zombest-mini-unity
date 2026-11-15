@@ -35,10 +35,10 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        // If the bullet hits an enemy, deal damage and return the bullet to the pool
-        if (other.TryGetComponent<Enemy>(out Enemy enemy))
+        // If the bullet hits a damageable object, deal damage and return the bullet to the pool
+        if (other.TryGetComponent<IDamageable>(out IDamageable target))
         {
-            enemy.TakeDamage(1);
+            target.TakeDamage(1);
             pool.Return(this);
         }
     }
