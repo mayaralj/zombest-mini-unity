@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
         // Set Health to maxHealth at the start of the game
         health = maxHealth;
+        // Update the health display in the GameManager
+        GameManager.Instance.SetHealth(health);
     }
 
     void Update()
@@ -119,15 +121,17 @@ public class PlayerController : MonoBehaviour
         {
             // Decrease health by 1
             health--;
-            Debug.Log("Player Health: " + health);
+            // Update the health display in the GameManager
+            GameManager.Instance.SetHealth(health);
 
             // Reset the damage timer to the damage cooldown value
             damageTimer = damageCooldown;
 
-            // If health is 0 or less, destroy the player GameObject
+            // If health is 0 or less
             if (health <= 0)
             {
-                Destroy(gameObject);
+                // Notify the GameManager that the game is over
+                GameManager.Instance.GameOver();
             }
         }
     }

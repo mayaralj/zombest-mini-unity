@@ -26,6 +26,13 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
+        // If game over, stop moving
+        if (GameManager.Instance.gameOver)
+        {
+            rb.linearVelocity = Vector3.zero;
+            return;
+        }
+        
         // if target is null, return
         if (target == null)
         {
@@ -45,12 +52,15 @@ public class Enemy : MonoBehaviour
     {
         // Take damage and check if health is 0 or less, if so destroy the enemy
         health -= amount;
+
         if (health <= 0)
         {
             Destroy(gameObject);
             // Notify the spawner that this enemy has been destroyed
             if (spawner != null)
             {
+                // Notify game manager that the enemy has been destroyed and we add score
+                GameManager.Instance.AddScore(1);
                 spawner.EnemyDestroyed();
             }
         }
