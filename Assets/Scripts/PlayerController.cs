@@ -6,9 +6,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float moveSpeed = 6f;
     [SerializeField] float fireCooldown = 0.2f;
     [SerializeField] BulletPool bulletPool;
-    [SerializeField] int maxHealth = 5;
+    [SerializeField] float maxHealth = 5f;
     [SerializeField] float damageCooldown = 1f;
-    int health;
+    float health;
     float damageTimer;
     float fireTimer = 0f;
     Rigidbody rb;
@@ -119,8 +119,8 @@ public class PlayerController : MonoBehaviour
         // If the player collides with an enemy and the damage timer is less than or equal to 0, take damage
         if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemy) && damageTimer <= 0f)
         {
-            // Decrease health by 1
-            health--;
+            // Decrease health by the enemy's damage
+            health -= enemy.GetDamage();
             // Update the health display in the GameManager
             GameManager.Instance.SetHealth(health);
 

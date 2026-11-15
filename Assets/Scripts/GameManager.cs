@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: " + score.ToString();
     }
 
-    public void SetHealth(int health)
+    public void SetHealth(float health)
     {
         // Update the healthText to show the new health
         healthText.text = "Health: " + health.ToString();

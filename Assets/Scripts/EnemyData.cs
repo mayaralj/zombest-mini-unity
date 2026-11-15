@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyData : ScriptableObject
 {
     public float speed = 3f;
-    public int health = 3;
-    public int damage = 1;
+    public float health = 3f;
+    public float damage = 1f;
     public int score = 1;
 }
