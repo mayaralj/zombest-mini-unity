@@ -6,7 +6,8 @@ Rebuilds the core loop of my Roblox game Zombest [(Github).](https://github.com/
 Unity 6 LTS, C#.
 
 ## Demo
-todoo
+[todoo](https://github.com/user-attachments/assets/ffadfec4-6406-4392-a439-744a2e39118e
+)
 
 ## Controls
 - **WASD:** move
