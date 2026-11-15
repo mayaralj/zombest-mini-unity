@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] float speed = 0.5f;
-    [SerializeField] float lifetime = 1f;
+    [SerializeField] float speed = 20f;
+    [SerializeField] float lifetime = 2f;
     float timer;
     BulletPool pool;
     

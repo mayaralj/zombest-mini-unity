@@ -4,6 +4,9 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 6f;
+    [SerializeField] float fireCooldown = 0.2f;
+    [SerializeField] BulletPool bulletPool;
+    float fireTimer = 0f;
     Rigidbody rb;
     Vector3 moveDir;
 
@@ -58,7 +61,7 @@ public class PlayerController : MonoBehaviour
             // Get Direction from player to hit point without y axis
             Vector3 targetDir = hitPoint - transform.position;
             targetDir.y = 0f;
-            
+
             // If direction isnt tiny, set rotation
             if (targetDir.sqrMagnitude > 0.001f)
             {
@@ -66,6 +69,28 @@ public class PlayerController : MonoBehaviour
                 transform.rotation = Quaternion.LookRotation(targetDir);
             }
         }
+        //=======================================================\\
+
+        // PLAYER SHOOTING \\
+        // Count down the fire timer
+        fireTimer -= Time.deltaTime;
+
+        // If the left mouse button is pressed and the fire timer is less than or equal to 0, fire a bullet
+        if (Mouse.current.leftButton.isPressed && fireTimer <= 0f)
+        {
+            // Get a bullet from the bullet pool
+            Bullet bullet = bulletPool.Get();
+            if (bullet != null)
+            {
+                // Set the bullet's position and rotation to match the player's
+                bullet.transform.position = transform.position;
+                bullet.transform.rotation = transform.rotation;
+
+                // Reset the fire timer to the fire cooldown value
+                fireTimer = fireCooldown;
+            }
+        }
+
         //=======================================================\\
     }
 
