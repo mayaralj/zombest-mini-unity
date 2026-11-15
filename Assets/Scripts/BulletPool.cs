@@ -26,7 +26,7 @@ public class BulletPool : MonoBehaviour
 
     public Bullet Get()
     {
-        // TODO 2: if the queue is empty return null; else dequeue, switch on, return it
+        // If the pool is empty, return null
         if (pool.Count == 0)
         {
             return null;
