@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] float speed = 4f;
-    [SerializeField] int health = 3;
+    [SerializeField] EnemyData data;
+    int health;
     [SerializeField] Transform target;
     Rigidbody rb;
     EnemySpawner spawner;
@@ -12,6 +12,9 @@ public class Enemy : MonoBehaviour
     {
         // Rigidbody in rb
         rb = GetComponent<Rigidbody>();
+
+        // Set health to the value from the EnemyData scriptable object
+        health = data.health;
     }
 
     public void SetTarget(Transform t)
@@ -32,7 +35,7 @@ public class Enemy : MonoBehaviour
             rb.linearVelocity = Vector3.zero;
             return;
         }
-        
+
         // if target is null, return
         if (target == null)
         {
@@ -45,7 +48,13 @@ public class Enemy : MonoBehaviour
         direction.Normalize();
 
         // Set the velocity of the rigidbody to move towards the target
-        rb.linearVelocity = direction * speed;
+        rb.linearVelocity = direction * data.speed;
+    }
+
+    public int GetDamage()
+    {
+        // Return the damage value from the EnemyData scriptable object
+        return data.damage;
     }
 
     public void TakeDamage(int amount)
@@ -60,7 +69,7 @@ public class Enemy : MonoBehaviour
             if (spawner != null)
             {
                 // Notify game manager that the enemy has been destroyed and we add score
-                GameManager.Instance.AddScore(1);
+                GameManager.Instance.AddScore(data.score);
                 spawner.EnemyDestroyed();
             }
         }

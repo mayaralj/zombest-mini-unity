@@ -8,7 +8,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float spawnRadius = 25f;
     float spawnTimer;
     int currentEnemies = 0;
-    int maxEnemies = 2;
+    int maxEnemies = 10;
 
     void Update()
     {
