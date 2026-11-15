@@ -1,13 +1,12 @@
 # Zombest Mini, Built in Unity
 
 Small 3D top-down zombie shooter built over a weekend to learn Unity and C#.
-Rebuilds the core loop of my Roblox game Zombest [(Github).](https://github.com/mayaralj/Zombest)
+Rebuilds the core loop of my Roblox game Zombest ([GitHub](https://github.com/mayaralj/Zombest))
 
-Unity 6 LTS, C#.
+Built in Unity 6 LTS, C#.
 
 ## Demo
-[todoo](https://github.com/user-attachments/assets/ffadfec4-6406-4392-a439-744a2e39118e
-)
+https://github.com/user-attachments/assets/ffadfec4-6406-4392-a439-744a2e39118e
 
 ## Controls
 - **WASD:** move
@@ -46,10 +45,10 @@ Unity 6 LTS, C#.
 
 ## What surprised me coming from Roblox
 - **C# feels a lot like Java.** Most of what I had to learn was minor syntax and Unity-specific APIs.
-- **OOP makes organising a game much easier** than in Luau, which has no native class support (there are workarounds).
+- **OOP makes organizing a game much easier** than in Luau, which has no native class support (there are workarounds).
 - **Creating, destroying and pooling objects** maps almost one-to-one onto how Roblox does it.
 - **C# plus Unity felt powerful even at this small scale.** I could use any data structure I needed, such as `Queue<T>` for the pool. In Luau the table is the only built-in structure, so I had to build queues and others by hand.
-- **MonoBehaviour scripts keep code organised** and make the order things run in clear.
+- **MonoBehaviour scripts keep code organized** and the lifecycle methods make it clear when each piece of code runs.
 - **ScriptableObjects let designers tune data**, such as enemy stats, directly in the editor with no code.
 
 
