@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] Enemy enemyPrefab;
+    [SerializeField] Enemy[] enemyPrefabs;
     [SerializeField] Transform player;
     [SerializeField] float spawnInterval = 2f;
     [SerializeField] float spawnRadius = 25f;
@@ -40,6 +40,8 @@ public class EnemySpawner : MonoBehaviour
         Vector3 position = player.position + offset;
 
         // Instantiate the enemy prefab at the calculated position and set its target to the player
+        // Pick a random enemy prefab from the array
+        Enemy enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
         Enemy enemy = Instantiate(enemyPrefab, position, Quaternion.identity);
         currentEnemies++;
         enemy.SetSpawner(this);

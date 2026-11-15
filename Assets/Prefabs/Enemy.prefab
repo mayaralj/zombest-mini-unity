@@ -153,6 +153,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8ee2e665ae8aa4e8441a3a148c3dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  speed: 3
-  health: 3
+  data: {fileID: 11400000, guid: 949cfa6df3e578b40a8742f81f6bf862, type: 2}
   target: {fileID: 0}
