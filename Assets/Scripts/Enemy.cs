@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] int health = 3;
     [SerializeField] Transform target;
     Rigidbody rb;
+    EnemySpawner spawner;
 
     void Start()
     {
@@ -16,6 +17,11 @@ public class Enemy : MonoBehaviour
     public void SetTarget(Transform t)
     {
         target = t;
+    }
+
+    public void SetSpawner(EnemySpawner s)
+    {
+        spawner = s;
     }
 
     void FixedUpdate()
@@ -42,6 +48,11 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            // Notify the spawner that this enemy has been destroyed
+            if (spawner != null)
+            {
+                spawner.EnemyDestroyed();
+            }
         }
     }
 }
